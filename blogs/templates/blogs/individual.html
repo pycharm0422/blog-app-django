@@ -1,0 +1,49 @@
+{% include 'blogs/navbar.html' %}
+{% load static %}
+
+<body>
+    
+    <div class="containers ">
+        <div class="container  mt-4">
+        
+        <h2>Posts By, <b><i>{{ username }}</i></b></h2>
+<br><br>
+        {% for post in posts %}
+        {% if post.author == request.user %}
+            
+        <div class=" m-1 bg-transparent shadow-lg">
+            <div class="media pt-3 pb-3 pl-3 pr-3 rounded-sm ">
+                <img src="{{ post.author.profile.image.url }}" width="70" height="70" alt="Circle Image"
+                class="img-raised rounded-circle img-fluid mr-5 Regular shadow">
+                <div class="media-body ">
+                    <a href="{% url 'individual-page' username=post.author %}"><small class="text-primary">{{ post.author }}</small></a>
+                  <h3 class="mt-0"><b> {{ post.title }} </b></h3>
+                  <p>{{ post.content|safe }}</p>
+                </div>
+          
+            </div>
+        </div><br>
+        {% else %}
+        {% if post.public_view == True %}
+
+        <div class=" m-1 bg-transparent shadow-lg">
+            <div class="media pt-3 pb-3 pl-3 pr-3 rounded-sm ">
+                <img src="{{ post.author.profile.image.url }}" width="70" height="70" alt="Circle Image"
+                class="img-raised rounded-circle img-fluid mr-5 Regular shadow">
+                <div class="media-body ">
+                    <a href="{% url 'individual-page' username=post.author %}"><small class="text-primary">{{ post.author }}</small></a>
+                  <h3 class="mt-0"><b> {{ post.title }} </b></h3>
+                  <p>{{ post.content|safe }}</p>
+                </div>
+          
+            </div>
+        </div><br>
+        {% endif %}
+        {% endif %}
+
+        {% endfor %}
+    </div>
+    </div>
+
+
+</body>

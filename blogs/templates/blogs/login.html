@@ -1,0 +1,28 @@
+{% load crispy_forms_tags %}
+
+
+{% include 'blogs/navbar.html' %}
+<body><br><br>
+    <div class="container">
+        testing321
+        <form action="" method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Login</legend><hr>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-primary" type="submit">Login</button>
+
+            </div>
+    
+        </form>
+
+
+
+
+
+        
+    </div>
+   
+</body>

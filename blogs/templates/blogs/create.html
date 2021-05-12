@@ -1,0 +1,23 @@
+{% include 'blogs/navbar.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<style>
+    body{
+        background-image: url('{% static "blogs/img/bg-34.jpg" %}');
+    }
+</style>
+
+<div class="containers">
+<div class="container my-5 p-5 shadow-lg bg-white">
+    <form action="" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Create Post</legend><hr>
+            {{ blog.media }}
+            {{ blog|crispy }}
+        </fieldset>
+        <button class="btn outline-secondary" type="submit">Update</button>
+    </form>
+</div>
+</div>

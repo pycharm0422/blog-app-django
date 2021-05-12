@@ -1,0 +1,51 @@
+<form action="{% url 'liked-post' %}" method="post" class="like-form" id="{{ post.id }}">
+    {% csrf_token %}
+    <input type="hidden" name="post_pk" id='post_pk' value={{post.pk}}>
+    {% if request.user in post.likes.all %}
+    <button class="btn like-btn{{post.id}} mt-5 float-right btn-outline-primary" id="btn_count">
+        {% if request.user in post.likes.all %}
+        Liked
+        {% else %}
+        Like
+        {% endif %}
+    </button>
+    {% else %}
+    <button class="btn like-btn{{post.id}} mt-5 float-right btn-primary" id="btn_count">
+        {% if request.user in post.likes.all %}
+        Liked
+        {% else %}
+        Like
+        {% endif %}
+    </button>
+    {% endif %}
+{% if request.user in post.likes.all %}
+    <div class="flex " style="
+        float: right;
+        margin-right: 5px;
+        margin-top: 5%;"> 
+        <div class="d-flex flex-row bd-highlight mb-5">
+            <div class="p-2 bd-highlight"> <span class="material-icons faviii{{post.id}}">favorite</span> </div>
+            <div class="p-2 bd-highlight likes_count{{post.id}}">{{ post.likes.all.count }}</div>
+            <!-- <div class="p-2 bd-highlight">Flex item 3</div> -->
+        </div>
+
+    </div>
+{% else %}
+<div class="flex " style="
+float: right;
+margin-right: 5px;
+margin-top: 5%;"> 
+<div class="d-flex flex-row bd-highlight mb-5">
+    <div class="p-2 bd-highlight"> <span class="material-icons faviii{{post.id}}">favorite_border</span> </div>
+    <div class="p-2 bd-highlight likes_count{{post.id}}">{{ post.likes.all.count }}</div>
+    <!-- <div class="p-2 bd-highlight">Flex item 3</div> -->
+</div>
+
+</div>
+
+{% endif %}
+ 
+</form>
+
+
+

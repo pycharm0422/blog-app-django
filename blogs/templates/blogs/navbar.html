@@ -1,0 +1,99 @@
+
+
+
+
+{% load static %}
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'blogs/css_js_page.html' %}
+
+<style>
+  .navbar{
+    margin-bottom: 0px;
+  }
+</style>
+
+<nav class="navbar navbar-inverse navbar-expand-lg bg-dark" role="navigation-demo">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-translate">
+      <a class="navbar-brand" href="admin/" target='blank' >Write Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    {% if request.user.is_authenticated %}
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a href="{% url 'home-page' %}" class="nav-link">
+            <span class="material-icons">
+              home
+            </span>Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'create-page' %}" class="nav-link">
+            <span class="material-icons">
+              add
+            </span>
+            Add Post
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="javascript:;" class="nav-link">
+            About Us
+          </a>
+        </li>
+    
+        
+        <li class="nav-item">
+          <a href="javascript:;" class="nav-link">
+            <b> <i> Hello, &nbsp;</i></b> {{ request.user }}
+          </a>
+        </li>
+        <li class="dropdown nav-item">
+          <a href="javascript:;" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
+            <div class="profile-photo-small">
+              <img src="{{ user.profile.image.url }}" alt="Circle Image" class="rounded-circle img-fluid" style="
+              width: 40px;
+              height: 40px;
+          ">
+            </div>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a href="{% url 'account-page' %}" class="dropdown-item">Me</a>
+            <a href="javascript:;" class="dropdown-item">Settings and other stuff</a>
+            <a href="{% url 'logout-page' %}" class="dropdown-item">Sign out</a>
+          </div>
+        </li>
+
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+    {% else %}
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a href="{% url 'login-page' %}" class="nav-link">Login </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'register-page' %}" class="nav-link">Register</a>
+        </li>
+       
+      
+      </ul>
+    </div><!-- /.navbar-collapse -->
+    
+    {% endif %}
+  </div><!-- /.container-->
+</nav>
+
+</html>

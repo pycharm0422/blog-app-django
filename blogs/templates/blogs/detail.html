@@ -1,0 +1,117 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% include 'blogs/css_js_page.html' %}
+
+<body>
+    <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="{% url 'home-page' %}">
+                    Home </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="material-icons">apps</i> Template
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <style>
+        .page-header {
+            background-image:url('{% static "blogs/img/bg3.jpg" %}')
+        }
+    </style>
+    <div class="page-header header-filter" data-parallax="true">
+
+        <div class="container">
+            <div class="row">
+                <div class=" ml-auto mr-auto">
+                    <div class="brand text-left">
+                        <h1>{{ post.title }}</h1>
+                        <div class="d-flex flex-row bd-highlight pr-3">
+                            <h4 class="pr-3"> <b><i>written by, &nbsp;&nbsp;</i></b>{{ post.author }}</h4>
+                            <div class="profile-photo-small">
+                                <img src="{{ post.author.profile.image.url }}" width="50" height="50" alt="Circle Image"
+                                    class="rounded-circle img-fluid">
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main main-raised">
+        <div class="container">
+            <div class="section text-left">
+                <h2 class="title">{{post.content|safe}}</h2>
+            </div>
+
+
+
+            {% if post.author == request.user %}
+            <a href="{% url 'update-page' pk=post.id %}"><button class="btn btn-primary mb-5">Update</button></a>
+            <a href="{% url 'delete-page' pk=post.id %}"><button class="btn btn-danger mb-5">Delete</button></a>
+            {% endif %}
+            <hr style="height:4px;border-width:0;color:gray;background-color:red">
+            <div class="comments">
+                {% include 'blogs/comment.html' %}
+            </div>
+            <hr><hr>
+            <div class="comment-show">
+                {% for comment in comments %}
+
+                <div class="col-md-6">
+                    <div class="card flex-md-row mb-4" style="box-shadow: none;">
+                        <img class="card-img-right flex-auto d-none d-md-block" style="width: 50px; height: 50px;"
+                            src="{{ comment.user.profile.image.url }}" data-holder-rendered="true">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <strong class="d-inline-block text-primary">{{ comment.user }}</strong>
+                            <h3 class="mb-0">
+                                <p class="card-text mb-0">{{ comment.comment }}</p>
+                            </h3>
+                            <div class="mb-1 text-muted">Nov 12</div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                {% endfor %}
+            </div>
+
+            {% include 'blogs/like_section.html' %}
+
+        </div>
+    </div>
+    <footer class="footer footer-default">
+        <div class="container">
+            <nav class="float-left">
+                <ul>
+                    <li>
+                        <a href="#">
+                            Faraz Khan
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </footer>
+</body>
+
+
+</html>

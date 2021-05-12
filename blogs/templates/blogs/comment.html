@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}
+<h2>Comments ...</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    <fieldset>
+        {{ comment|crispy }}
+    </fieldset>
+    <button class="btn btn-outline-info" type="submit" >Comment</button>
+</form>

@@ -1,0 +1,43 @@
+{% include 'blogs/navbar.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<style>
+   
+    body{
+        background-image: url('{% static "blogs/img/bg-99.jpg" %}');
+    }
+</style>
+
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<section class="text-gray-700 body-font relative " >
+    <div class="container px-5 py-16 my-8 mx-auto shadow-md bg-yellow-100 width-control" style="width: 50%;">
+      <div class="flex flex-col text-center w-full mb-12">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Setting up Account </h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p><hr>
+      </div>
+      <div class="lg:w-1/2 md:w-2/3 mx-auto">
+        <div class="flex flex-wrap -m-2">
+        
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset>
+                    {{ form|crispy }}
+                </fieldset>
+                <button class="btn btn-outline-success" type="submit">Update</button>
+    
+    
+            </form><br><br>
+
+
+        </div>
+      </div>
+    </div>
+  </section>
